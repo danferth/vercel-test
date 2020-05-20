@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Not A Trash Panda`,
-    test: `Blog on front page moron`,
+    test: `Blog on front page moron!`,
   },
   plugins: [
     {
