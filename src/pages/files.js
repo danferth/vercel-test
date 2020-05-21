@@ -3,8 +3,6 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 
 const Files = ({ data }) => {
-  console.log(data)
-
   return (
     <Layout>
       <div>
