@@ -7,23 +7,28 @@ const Contact = () => {
   const { register, handleSubmit, errors } = useForm()
   const onSubmit = data => {
     let jsonData = JSON.stringify(data)
+    const fetchHeaders = new Headers({
+      Accept: "application/json",
+      "Content-type": "text/plain",
+    })
     console.log("about to fetch something")
     fetch("https://forms.danferth.com/parse/devferth-contact.php", {
       method: "POST",
-      mode: "cors",
+      mode: "no-cors",
       credentials: "omit",
       body: jsonData,
-      headers: {
-        Accept: "application/json",
-        "Content-type": "application/json",
-      },
-    }).then(responce => {
-      if (!responce.ok) {
-        throw new Error("there was a problem")
-      }
-      console.log("here we sit")
-      return responce.blob()
+      headers: { fetchHeaders },
     })
+      .then(responce => {
+        if (!responce.ok) {
+          throw new Error("there was a problem")
+        }
+        console.log("here we sit")
+        return responce.blob()
+      })
+      .catch(error => {
+        console.log(error)
+      })
     //   .then(responce => responce.json())
     //   .then(data => console.log(data))
     //   .catch(error => console.log(error))
