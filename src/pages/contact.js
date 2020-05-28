@@ -9,8 +9,9 @@ const Contact = () => {
     let jsonData = JSON.stringify(data)
 
     fetch("https://forms.danferth.com/parse/devferth-contact.php", {
+      mode: "cors",
       method: "POST",
-      body: jsonData,
+      body: JSON.stringify(data),
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
