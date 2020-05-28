@@ -1,8 +1,7 @@
-import React from "react"
+import { React } from "react"
 import { css } from "@emotion/core"
 import { Link, useStaticQuery, graphql } from "gatsby"
-
-import { rhythm } from "../utils/typography"
+import Header from "./header"
 
 const Layout = props => {
   const data = useStaticQuery(
@@ -13,55 +12,52 @@ const Layout = props => {
             title
           }
         }
+        allFile(
+          filter: {
+            ext: { eq: ".js" }
+            relativeDirectory: { eq: "pages" }
+            name: { ne: "index" }
+          }
+        ) {
+          edges {
+            node {
+              name
+            }
+          }
+        }
       }
     `
   )
+
   return (
     <div
       css={css`
         margin: 0 auto;
-        max-width: 700px;
-        padding: ${rhythm(2)};
-        padding-top: ${rhythm(1.5)};
+        max-width: 100%;
       `}
     >
-      <Link to={`/`}>
-        <h3
-          css={css`
-            margin-bottom: ${rhythm(2)};
-            display: inline-block;
-            font-style: normal;
-          `}
-        >
-          {data.site.siteMetadata.title}
-        </h3>
-      </Link>
-      <Link
-        to={`/about`}
+      <Header></Header>
+      <div
         css={css`
           float: right;
         `}
       >
-        About
-      </Link>
-      <Link
-        to={`/files`}
-        css={css`
-          float: right;
-          margin-right: 1rem;
-        `}
-      >
-        Files
-      </Link>
-      <Link
-        to={`/test`}
-        css={css`
-          float: right;
-          margin-right: 1rem;
-        `}
-      >
-        Test
-      </Link>
+        {data.allFile.edges.map(({ node }, index) => (
+          <Link
+            css={css`
+              margin-right: 1rem;
+              &:last-of-type {
+                margin-right: 0;
+              }
+            `}
+            key={index}
+            to={`/${node.name}`}
+          >
+            {node.name}
+          </Link>
+        ))}
+      </div>
+
       {props.children}
     </div>
   )

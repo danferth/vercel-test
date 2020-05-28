@@ -5,20 +5,22 @@ import Layout from "../components/layout"
 
 const Test = ({ data }) => {
   return (
-    <Layout>
-      <div
-        css={css`
-          border: 2px dashed teal;
-          width: 100%;
-          height: 100%;
-          &:hover {
-            border-color: red;
-          }
-        `}
-      >
-        <p>{data.site.siteMetadata.test}</p>
-      </div>
-    </Layout>
+    <div>
+      <Layout>
+        <div
+          css={css`
+            border: 2px dashed teal;
+            width: 100%;
+            height: 100%;
+            &:hover {
+              border-color: red;
+            }
+          `}
+        >
+          <p>{data.site.siteMetadata.test}</p>
+        </div>
+      </Layout>
+    </div>
   )
 }
 

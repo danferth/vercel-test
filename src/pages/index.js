@@ -9,7 +9,6 @@ const App = ({ data }) => {
     <Layout>
       <div
         css={css`
-          border: 1px solid black;
           margin-bottom: 1rem;
         `}
       >
@@ -23,7 +22,6 @@ const App = ({ data }) => {
       </div>
       <div
         css={css`
-          border: 1px solid teal;
           padding: 1rem;
         `}
       >
