@@ -7,7 +7,7 @@ const Contact = () => {
   const { register, handleSubmit, errors } = useForm()
   const onSubmit = data => {
     let jsonData = JSON.stringify(data)
-
+    console.log("about to fetch something")
     fetch("https://forms.danferth.com/parse/devferth-contact.php", {
       method: "POST",
       mode: "cors",
@@ -21,7 +21,8 @@ const Contact = () => {
       if (!responce.ok) {
         throw new Error("there was a problem")
       }
-      console.log(responce.blob())
+      console.log("here we sit")
+      return responce.blob()
     })
     //   .then(responce => responce.json())
     //   .then(data => console.log(data))
